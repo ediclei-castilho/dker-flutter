@@ -42,7 +42,7 @@ RUN cd $ANDROID_SDK_HOME && \
     wget https://dl.google.com/android/repository/sdk-tools-linux-$ANDROID_SDK_VERSION.zip
 RUN cd $ANDROID_SDK_HOME && \
     unzip sdk*$ANDROID_SDK_VERSION.zip && \
-    rm sdk*$ANDROID_SDK_VERSION.zip && \
+    rm sdk*$ANDROID_SDK_VERSION.zip
     
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
 RUN export JAVA_HOME
