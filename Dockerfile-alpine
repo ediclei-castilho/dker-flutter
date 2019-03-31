@@ -1,0 +1,16 @@
+FROM alpine 
+
+ENV FLUTTER_HOME /root/flutter
+ENV FLUTTER_VERSION 1.2.1-stable
+
+RUN apk update --no-cache && \
+  apk add bash mesa-gl git curl unzip wget xz libstdc++
+
+RUN wget -q https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_v${FLUTTER_VERSION}.tar.xz
+RUN mkdir $FLUTTER_HOME
+RUN cd $FLUTTER_HOME/../ && \
+	tar xf /flutter_linux_v$FLUTTER_VERSION.tar.xz
+
+ENV PATH $PATH:$FLUTTER_HOME/bin/cache/dart-sdk/bin:$FLUTTER_HOME/bin
+
+RUN flutter doctor
