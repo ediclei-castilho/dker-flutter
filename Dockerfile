@@ -13,14 +13,19 @@ FROM ubuntu
 
 # ###############
 
-ENV FLUTTER_HOME ${HOME}/flutter
+ENV FLUTTER_HOME /root/flutter
 ENV FLUTTER_VERSION 1.0.0-stable
 
 RUN apt-get update \
   && apt-get install -y libglu1-mesa git curl unzip wget xz-utils lib32stdc++6 \
   && apt-get clean
 
-RUN wget https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_v${FLUTTER_VERSION}.tar.xz
-RUN cd ${HOME} & tar xf /flutter_linux_v1.0.0-stable.tar.xz
+RUN wget -q https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_v${FLUTTER_VERSION}.tar.xz
+RUN mkdir $FLUTTER_HOME
+RUN cd $FLUTTER_HOME/../ && \
+	tar xf /flutter_linux_v1.0.0-stable.tar.xz
 
-RUN PATH=${PATH}:${FLUTTER_HOME}/bin
+#RUN PATH=${PATH}:${FLUTTER_HOME}/bin
+ENV PATH $PATH:$FLUTTER_HOME/bin/cache/dart-sdk/bin:$FLUTTER_HOME/bin
+
+RUN flutter doctor
