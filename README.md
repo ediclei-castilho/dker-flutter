@@ -19,14 +19,14 @@ samples, guidance on mobile development, and a full API reference.
 
 This repository will help you to run flutter completely without any installation on the host machine.  
 
-Checkout this repository as below  
+### Checkout this repository as below  
 
 git clone https://github.com/dodopontocom/dker-flutter.git ; cd dker-flutter  
 
-Run script test as below  
+### Run script test as below  
 
 ./test.sh <your_project_name>  
 
-Build an example as below  
+### Build an example as below  
 
 cd odroidfeeder; docker run -it --rm -v $PWD:/root/test -w /root/test flutter-android-sdk flutter build apk
