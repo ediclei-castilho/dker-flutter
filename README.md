@@ -14,3 +14,11 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our 
 [online documentation](https://flutter.io/docs), which offers tutorials, 
 samples, guidance on mobile development, and a full API reference.
+
+## Getting Started in Docker
+
+This repository will help you to run flutter completely without any installation on the host machine.  
+
+run script test as below  
+
+./test.sh <your_project_name>
