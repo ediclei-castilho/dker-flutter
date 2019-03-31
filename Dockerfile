@@ -46,11 +46,12 @@ RUN cd $ANDROID_SDK_HOME && \
     rm sdk*$ANDROID_SDK_VERSION.zip
     
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
-RUN export JAVA_HOME
-RUN export ANDROID_SDK_ROOT
+RUN export $JAVA_HOME
+RUN export $ANDROID_SDK_ROOT
 ENV PATH $PATH:$JAVA_HOME/bin:$ANDROID_SDK_HOME/tools:$ANDROID_SDK_HOME/tools/bin:$ANDROID_SDK_ROOT
 ENV PATH $PATH:$FLUTTER_HOME/bin/cache/dart-sdk/bin:$FLUTTER_HOME/bin
 
+RUN flutter config --android-sdk $ANDROID_SDK_ROOT
 RUN flutter doctor
 RUN java -version
 RUN sdkmanager --list
