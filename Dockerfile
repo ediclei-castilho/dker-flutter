@@ -5,6 +5,7 @@ ENV FLUTTER_VERSION 1.2.1-stable
 
 ENV ANDROID_SDK_HOME /opt/sdk
 ENV ANDROID_SDK_VERSION 4333796
+ENV ANDROID_SDK_ROOT /opt/sdk
 
 RUN mkdir $FLUTTER_HOME && \
     mkdir $ANDROID_SDK_HOME && \
@@ -44,9 +45,10 @@ RUN cd $ANDROID_SDK_HOME && \
     unzip sdk*$ANDROID_SDK_VERSION.zip && \
     rm sdk*$ANDROID_SDK_VERSION.zip
     
-ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
 RUN export JAVA_HOME
-ENV PATH $PATH:$JAVA_HOME/bin:$ANDROID_SDK_HOME/tools:$ANDROID_SDK_HOME/tools/bin
+RUN export ANDROID_SDK_ROOT
+ENV PATH $PATH:$JAVA_HOME/bin:$ANDROID_SDK_HOME/tools:$ANDROID_SDK_HOME/tools/bin:$ANDROID_SDK_ROOT
 ENV PATH $PATH:$FLUTTER_HOME/bin/cache/dart-sdk/bin:$FLUTTER_HOME/bin
 
 RUN flutter doctor
