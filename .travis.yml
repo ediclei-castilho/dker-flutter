@@ -1,1 +1,8 @@
 language: generic
+
+script:
+ - bash cloud/docker/build-test.sh
+
+branches:
+  only:
+    - develop
