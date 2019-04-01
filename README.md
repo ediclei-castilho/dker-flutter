@@ -22,19 +22,19 @@ This repository will help you to run flutter completely without any installation
 ### Checkout this repository as below  
 
 ``` 
-git clone https://github.com/dodopontocom/dker-flutter.git ; cd dker-flutter  
+~$ git clone https://github.com/dodopontocom/dker-flutter.git ; cd dker-flutter  
 ```
 
 ### Run script test as below  
 
 ``` 
-./test.sh <your_project_name>  
+~$ ./test.sh <your_project_name>  
 ```
 
 ### Build an example as below  
 
 ```
-cd odroidfeeder; docker run -it --rm -v $PWD:/root/test -w /root/test flutter-android-sdk flutter build apk
+~$ cd odroidfeeder; docker run -it --rm -v $PWD:/root/test -w /root/test flutter-android-sdk flutter build apk
 ```  
 
 result app in `./build/app/outputs/apk/app.apk`  
@@ -44,9 +44,9 @@ result app in `./build/app/outputs/apk/app.apk`
 just run inside your app project folder as bellow
 
 ```
-cd <your_flutter_project_folder>
-alias flutter="docker run -it --rm -v $PWD:/root/test -w /root/test flutter-android-sdk flutter"
-flutter
+~$ cd <your_flutter_project_folder>
+~$ alias flutter="docker run -it --rm -v $PWD:/root/test -w /root/test flutter-android-sdk flutter"
+~$ flutter
 ```  
 
 
