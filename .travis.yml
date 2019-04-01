@@ -3,9 +3,12 @@ env:
   global:
     - BUILD_TEST=cloud/docker
     - PROJECT_TEST=odroidfeeder
-script:
- - cd $BUILD_TEST
- - bash build-test.sh $PROJECT_TEST
+jobs:
+  include:
+    - stage: test
+      script:
+        - cd $BUILD_TEST
+        - bash build-test.sh $PROJECT_TEST
 
 branches:
   only:
