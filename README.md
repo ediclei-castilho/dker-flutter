@@ -37,12 +37,16 @@ git clone https://github.com/dodopontocom/dker-flutter.git ; cd dker-flutter
 cd odroidfeeder; docker run -it --rm -v $PWD:/root/test -w /root/test flutter-android-sdk flutter build apk
 ```  
 
-result app in `./builds/app.apk`  
+result app in `./build/app/outputs/apk/app.apk`  
 
 ### Flutter command aliased for you  
 
 just run inside your app project folder as bellow
 
-`flutter test`  
+```
+cd <your_flutter_project_folder>
+alias flutter="docker run -it --rm -v $PWD:/root/test -w /root/test flutter-android-sdk flutter"
+flutter
+```  
 
 
