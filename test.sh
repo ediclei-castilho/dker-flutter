@@ -27,6 +27,5 @@ if [[ $create == yes ]]; then
 	docker run --rm -it -v $PWD/$project_name:/root/$project_name -w /root/ $IMAGE flutter create $project_name
 fi
 
-
 echo "testing the app..."
 docker run --rm -it -v $PWD/$project_name:/root/$project_name -w /root/$project_name $IMAGE flutter test
