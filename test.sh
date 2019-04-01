@@ -30,15 +30,3 @@ fi
 
 echo "testing the app..."
 docker run --rm -it -v $PWD/$project_name:/root/$project_name -w /root/$project_name $IMAGE flutter test
-
-echo "creating an alias for you"
-echo "next time you can simply run 'flutter <commands>'"
-echo "example: flutter test"
-
-echo -e "
-#!/bin/bash\n
-alias flutter='docker run --rm -it -v $PWD/$project_name:/root/$project_name -w /root/$project_name flutter-ubuntu flutter'" \
-> alias.sh
-source alias.sh
-
-flutter test
