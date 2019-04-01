@@ -27,8 +27,8 @@ docker build --quiet -t $IMAGE .
 
 cp -r $project_root/$project_name ./
 if [[ $create == yes ]]; then
-	docker run --rm -it -v $PWD/$project_name:/root/$project_name -w /root/ $IMAGE flutter create $project_name
+	docker run --rm -it -v $project_name:/root/$project_name -w /root/ $IMAGE flutter create $project_name
 fi
 
 echo "testing the app..."
-docker run --rm -it -v $PWD/$project_name:/root/$project_name -w /root/$project_name $IMAGE flutter test
+docker run --rm -it -v $project_name:/root/$project_name -w /root/$project_name $IMAGE flutter test
