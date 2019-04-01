@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/dodopontocom/dker-flutter.svg?branch=develop)](https://travis-ci.org/dodopontocom/dker-flutter)  
 # odroidfeeder
 
 A new Flutter project.
