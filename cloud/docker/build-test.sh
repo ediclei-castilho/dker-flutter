@@ -28,7 +28,7 @@ fi
 echo "create project: $create"
 docker build --quiet -t $IMAGE .
 
-cp -rv $project_root/$project_name ./
+cp -rv $project_root/$project_name $base_script/
 if [[ $create == yes ]]; then
 	docker run --rm -it -v $project_name:/root/$project_name -w /root/ $IMAGE flutter create $project_name
 fi
