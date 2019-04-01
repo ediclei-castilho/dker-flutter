@@ -22,9 +22,9 @@ else
 	fi		
 fi
 
-docker build -t $IMAGE -f Dockerfile .
+docker build -t $IMAGE .
 
-cp $project_root/$project_name ./
+cp -r $project_root/$project_name ./
 if [[ $create == yes ]]; then
 	docker run --rm -it -v $PWD/$project_name:/root/$project_name -w /root/ $IMAGE flutter create $project_name
 fi
