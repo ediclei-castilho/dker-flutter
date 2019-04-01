@@ -4,7 +4,8 @@
 
 IMAGE=flutter-android-sdk
 project_name=$1
-project_root=$PWD/../..
+base_script=$(dirname $0)
+project_root=$base_script/../..
 create=''
 
 if [[ -z $project_name ]]; then
@@ -22,7 +23,7 @@ else
 	fi		
 fi
 
-docker build -t $IMAGE .
+docker build --quiet -t $IMAGE .
 
 cp -r $project_root/$project_name ./
 if [[ $create == yes ]]; then
