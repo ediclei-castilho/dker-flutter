@@ -4,6 +4,7 @@
 
 IMAGE=flutter-android-sdk
 project_name=$1
+project_root=$PWD/../..
 create=''
 
 if [[ -z $project_name ]]; then
@@ -11,10 +12,10 @@ if [[ -z $project_name ]]; then
 	exit 1
 fi
 
-if [[ ! -d $PWD/$project_name ]]; then
-	mkdir $PWD/$project_name
+if [[ ! -d $project_root/$project_name ]]; then
+	mkdir $project_root/$project_name
 else
-	if [[ $(find $project_name -name 'pubspec.yaml' | wc -l) == 1 ]]; then
+	if [[ $(find $project_root/$project_name -name 'pubspec.yaml' | wc -l) == 1 ]]; then
 		create=no
 	else
 		create=yes
@@ -23,6 +24,7 @@ fi
 
 docker build -t $IMAGE -f Dockerfile .
 
+cp $project_root/$project_name ./
 if [[ $create == yes ]]; then
 	docker run --rm -it -v $PWD/$project_name:/root/$project_name -w /root/ $IMAGE flutter create $project_name
 fi
