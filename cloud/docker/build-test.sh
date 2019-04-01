@@ -14,6 +14,7 @@ if [[ -z $project_name ]]; then
 fi
 
 if [[ ! -d $project_root/$project_name ]]; then
+	echo "creating $project_root/$project_name"
 	mkdir $project_root/$project_name
 else
 	if [[ $(find $project_root/$project_name -name 'pubspec.yaml' | wc -l) == 1 ]]; then
@@ -23,6 +24,7 @@ else
 	fi		
 fi
 
+echo "create project: $create"
 docker build --quiet -t $IMAGE .
 
 cp -rv $project_root/$project_name ./
