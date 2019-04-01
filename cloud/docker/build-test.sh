@@ -18,11 +18,11 @@ if [[ ! -d $project_root/$project_name ]]; then
 	mkdir $project_root/$project_name
 fi
 if [[ $(find $project_root/$project_name -name 'pubspec.yaml' | wc -l) == 1 ]]; then
-		create=no
-	else
-		create=yes
-	fi		
-fi
+	create=no
+else
+	create=yes
+fi		
+
 
 echo "create project: $create"
 docker build --quiet -t $IMAGE .
