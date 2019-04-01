@@ -1,10 +1,11 @@
 language: generic
 env:
   global:
-    - BUILD_TEST=cloud/docker/build-test.sh
+    - BUILD_TEST=cloud/docker
     - PROJECT_TEST=travis_test
 script:
- - bash $BUILD_TEST $PROJECT_TEST
+ - cd $BUILD_TEST
+ - bash build-test.sh $PROJECT_TEST
 
 branches:
   only:
