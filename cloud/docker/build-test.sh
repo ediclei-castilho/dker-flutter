@@ -31,4 +31,6 @@ if [[ $create == yes ]]; then
 fi
 
 echo "testing the app..."
+echo "on project: $project_name"
+echo "docker run --rm -it -v $project_name:/root/$project_name -w /root/$project_name $IMAGE flutter test"
 docker run --rm -it -v $project_name:/root/$project_name -w /root/$project_name $IMAGE flutter test
