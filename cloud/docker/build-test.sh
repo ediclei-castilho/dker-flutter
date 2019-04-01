@@ -16,8 +16,8 @@ fi
 if [[ ! -d $project_root/$project_name ]]; then
 	echo "creating $project_root/$project_name"
 	mkdir $project_root/$project_name
-else
-	if [[ $(find $project_root/$project_name -name 'pubspec.yaml' | wc -l) == 1 ]]; then
+fi
+if [[ $(find $project_root/$project_name -name 'pubspec.yaml' | wc -l) == 1 ]]; then
 		create=no
 	else
 		create=yes
