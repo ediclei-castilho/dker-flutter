@@ -9,6 +9,10 @@ jobs:
       script:
         - cd $BUILD_TEST
         - bash build-test.sh $PROJECT_TEST
+    - stage: build
+      script:
+        - cd $BUILD_TEST
+        - bash build-test.sh $PROJECT_TEST build
 
 branches:
   only:
