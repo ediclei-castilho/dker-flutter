@@ -28,7 +28,7 @@ This repository will help you to run flutter completely without any installation
 ### Run script test as below  
 
 ``` 
-~$ ./test.sh <your_project_name>  
+~$ ./cloud/docker/build-test.sh <your_project_name>  
 ```
 
 ### Build an example as below  
