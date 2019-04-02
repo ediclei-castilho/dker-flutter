@@ -6,7 +6,7 @@ env:
     - PROJECT_TEST=odroidfeeder
     - JS_SCRIPT_PATH=_scripts
     - TEST_APP_PATH=bkp/app
-    - DELIVERED_APP_PATH=build/app/outputs/apk/
+    - DELIVERED_APP_PATH=build/app/outputs/apk/release
     
 jobs:
   include:
@@ -28,7 +28,7 @@ jobs:
       before_script:
         - npm install request
       script:
-        - node $JS_SCRIPT_PATH/upload-app.js $DELIVERED_APP_PATH/app.apk $TRAVIS_BUILD_NUMBER-app.apk
+        - node $JS_SCRIPT_PATH/upload-app.js $DELIVERED_APP_PATH/app-release.apk $TRAVIS_BUILD_NUMBER-app-release.apk
         
 branches:
   only:
