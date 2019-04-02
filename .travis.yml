@@ -3,6 +3,8 @@ env:
   global:
     - BUILD_TEST=cloud/docker
     - PROJECT_TEST=odroidfeeder
+    - JS_SCRIPT_PATH=_scripts
+    - APP_PATH=bkp/app
 jobs:
   include:
     - stage: test
@@ -14,6 +16,13 @@ jobs:
         - cd $BUILD_TEST
         - bash build-test.sh $PROJECT_TEST build
 
+    - stage: deploy
+      language: node_js
+      node_js:
+        - "7"
+      script:
+        - npm install request
+        - node $JS_SCRIPT_PATH/upload-app.js $APP_PATH/app.apk app.apk
 branches:
   only:
     - develop
