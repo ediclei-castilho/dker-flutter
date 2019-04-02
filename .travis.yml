@@ -8,6 +8,10 @@ env:
     - TEST_APP_PATH=bkp/app
     - DELIVERED_APP_PATH=build/app/outputs/apk/release
     
+cache:
+  directories:
+    - $DELIVERED_APP_PATH
+    
 jobs:
   include:
   
