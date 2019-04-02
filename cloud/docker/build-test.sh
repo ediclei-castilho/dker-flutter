@@ -3,7 +3,7 @@
 #set -x
 
 #IMAGE=flutter-android-sdk
-IMAGE="rodolfoneto/dker-flutter:tagname"
+IMAGE="rodolfoneto/dker-flutter:latest"
 project_name=$1
 travis_flag=$2
 base_script=$(dirname $0)
