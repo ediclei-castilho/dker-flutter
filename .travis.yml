@@ -2,6 +2,7 @@ language: generic
 env:
   global:
     - JS_SCRIPT_PATH=_scripts
+    - TEST_APP_PATH=bkp/app
 jobs:
   include:
     - stage: deploy
@@ -9,7 +10,7 @@ jobs:
       node_js:
         - "7"
       script:
-        - KOBITON_USERNAME=$KOBITON_USERNAME KOBITON_API_KEY=$KOBITON_API_KEY node $JS_SCRIPT_PATH/upload-app.js apps/ContactManager.apk ContactManager.apk
+        - KOBITON_USERNAME=$KOBITON_USERNAME KOBITON_API_KEY=$KOBITON_API_KEY node $JS_SCRIPT_PATH/upload-app.js TEST_APP_PATH/app.apk app.apk
 branches:
   only:
     - node
