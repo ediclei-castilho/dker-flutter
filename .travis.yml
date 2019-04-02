@@ -6,7 +6,7 @@ env:
     - PROJECT_TEST=odroidfeeder
     - JS_SCRIPT_PATH=_scripts
     - TEST_APP_PATH=bkp/app
-    - DELIVERED_APP_PATH=build/app/outputs/apk/release
+    - DELIVERED_APP_PATH=$PROJECT_TEST/build/app/outputs/apk/release
     
 cache:
   directories:
