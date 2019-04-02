@@ -1,4 +1,5 @@
 language: generic
+
 env:
   global:
     - BUILD_TEST=cloud/docker
@@ -6,12 +7,15 @@ env:
     - JS_SCRIPT_PATH=_scripts
     - TEST_APP_PATH=bkp/app
     - DELIVERED_APP_PATH=build/app/outputs/apk/
+    
 jobs:
   include:
+  
     - stage: test
       script:
         - cd $BUILD_TEST
         - bash build-test.sh $PROJECT_TEST
+        
     - stage: build
       script:
         - cd $BUILD_TEST
@@ -25,6 +29,7 @@ jobs:
         - npm install request
       script:
         - node $JS_SCRIPT_PATH/upload-app.js $DELIVERED_APP_PATH/app.apk $TRAVIS_BUILD_NUMBER-app.apk
+        
 branches:
   only:
     - node
