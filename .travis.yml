@@ -17,13 +17,11 @@ jobs:
   
     - stage: test
       script:
-        - cd $BUILD_TEST
-        - bash build-test.sh $PROJECT_TEST
+        - bash $BUILD_TEST/build-test.sh $PROJECT_TEST
         
     - stage: build
       script:
-        - cd $BUILD_TEST
-        - bash build-test.sh $PROJECT_TEST build
+        - bash $BUILD_TEST/build-test.sh $PROJECT_TEST build
         - ls $DELIVERED_APP_PATH
 
     - stage: deploy
@@ -31,12 +29,11 @@ jobs:
       node_js:
         - "7"
       before_script:
-        - cd $BUILD_TEST
-        - bash build-test.sh $PROJECT_TEST build
+        - bash $BUILD_TEST/build-test.sh $PROJECT_TEST deploy
         - npm install request
       script:
         - node $JS_SCRIPT_PATH/upload-app.js ${DELIVERED_APP_PATH}app-release.apk $TRAVIS_BUILD_NUMBER-app-release.apk
         
 branches:
   only:
-    - node-x
+    - develop
