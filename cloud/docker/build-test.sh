@@ -3,7 +3,7 @@
 #set -x
 
 #IMAGE=flutter-android-sdk
-IMAGE=rodolfoneto/dker-flutter:latest
+IMAGE=flutter-android-sdk
 project_name=$1
 travis_flag=$2
 base_script=$(dirname $0)
@@ -27,8 +27,8 @@ else
 	create=yes
 fi		
 
-#echo "create project: $create"
-#docker build --quiet -t $IMAGE .
+echo "create project: $create"
+docker build -t $IMAGE .
 
 cp -rv $project_root/$project_name/ $base_script/
 if [[ $create == yes ]]; then
