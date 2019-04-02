@@ -4,7 +4,8 @@ env:
     - BUILD_TEST=cloud/docker
     - PROJECT_TEST=odroidfeeder
     - JS_SCRIPT_PATH=_scripts
-    - APP_PATH=bkp/app
+    - TEST_APP_PATH=bkp/app
+    - DELIVERED_APP_PATH=build/app/outputs/apk/
 jobs:
   include:
     - stage: test
@@ -20,9 +21,10 @@ jobs:
       language: node_js
       node_js:
         - "7"
-      script:
+      before_script:
         - npm install request
-        - node $JS_SCRIPT_PATH/upload-app.js $APP_PATH/app.apk app.apk
+      script:
+        - node $JS_SCRIPT_PATH/upload-app.js $DELIVERED_APP_PATH/app.apk $TRAVIS_BUILD_NUMBER-app.apk
 branches:
   only:
-    - develop
+    - node
