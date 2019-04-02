@@ -27,8 +27,8 @@ else
 	create=yes
 fi		
 
-echo "create project: $create"
-docker build --quiet -t $IMAGE .
+#echo "create project: $create"
+#docker build --quiet -t $IMAGE .
 
 cp -rv $project_root/$project_name/ $base_script/
 if [[ $create == yes ]]; then
