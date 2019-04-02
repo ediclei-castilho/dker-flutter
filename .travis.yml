@@ -1,17 +1,28 @@
 language: generic
 env:
   global:
+    - BUILD_TEST=cloud/docker
+    - PROJECT_TEST=odroidfeeder
     - JS_SCRIPT_PATH=_scripts
-    - TEST_APP_PATH=bkp/app
+    - APP_PATH=bkp/app
 jobs:
   include:
+    - stage: test
+      script:
+        - cd $BUILD_TEST
+        - bash build-test.sh $PROJECT_TEST
+    - stage: build
+      script:
+        - cd $BUILD_TEST
+        - bash build-test.sh $PROJECT_TEST build
+
     - stage: deploy
       language: node_js
       node_js:
         - "7"
       script:
         - npm install request
-        - node $JS_SCRIPT_PATH/upload-app.js $TEST_APP_PATH/app.apk app.apk
+        - node $JS_SCRIPT_PATH/upload-app.js $APP_PATH/app.apk app.apk
 branches:
   only:
-    - node
+    - develop
