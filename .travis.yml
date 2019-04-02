@@ -10,8 +10,8 @@ jobs:
       node_js:
         - "7"
       script:
-        - npm install request --save
-        - KOBITON_USERNAME=$KOBITON_USERNAME KOBITON_API_KEY=$KOBITON_API_KEY node $JS_SCRIPT_PATH/upload-app.js $TEST_APP_PATH/app.apk app.apk
+        - npm install request
+        - node $JS_SCRIPT_PATH/upload-app.js $TEST_APP_PATH/app.apk app.apk
 branches:
   only:
     - node
