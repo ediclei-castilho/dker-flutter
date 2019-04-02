@@ -24,6 +24,7 @@ jobs:
       script:
         - cd $BUILD_TEST
         - bash build-test.sh $PROJECT_TEST build
+        - echo "-----> $DELIVERED_APP_PATH"
 
     - stage: deploy
       language: node_js
