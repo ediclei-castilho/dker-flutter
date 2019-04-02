@@ -6,7 +6,7 @@ env:
     - PROJECT_TEST=odroidfeeder
     - JS_SCRIPT_PATH=_scripts
     - TEST_APP_PATH=bkp/app
-    - DELIVERED_APP_PATH=$PROJECT_TEST/build/app/outputs/apk/release
+    - DELIVERED_APP_PATH=$TRAVIS_BUILD_DIR/$PROJECT_TEST/build/app/outputs/apk/release/
     
 cache:
   directories:
@@ -32,7 +32,7 @@ jobs:
       before_script:
         - npm install request
       script:
-        - node $JS_SCRIPT_PATH/upload-app.js $DELIVERED_APP_PATH/app-release.apk $TRAVIS_BUILD_NUMBER-app-release.apk
+        - node $JS_SCRIPT_PATH/upload-app.js ${DELIVERED_APP_PATH}app-release.apk $TRAVIS_BUILD_NUMBER-app-release.apk
         
 branches:
   only:
