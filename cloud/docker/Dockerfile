@@ -40,11 +40,6 @@ RUN apt-get update && \
 	rm -rf /var/lib/apt/lists/* && \
 	rm -rf /var/cache/oracle-jdk8-installer;
 
-#Install Android SDK deps
-RUN apt-get update && \
-  apt-get install -y unzip wget && \
-  apt-get clean
-
 #Get Android SDK
 RUN cd $ANDROID_SDK_HOME && \
     wget https://dl.google.com/android/repository/sdk-tools-linux-$ANDROID_SDK_VERSION.zip
@@ -61,3 +56,6 @@ ENV PATH $PATH:$JAVA_HOME/bin:$ANDROID_SDK_HOME/tools:$ANDROID_SDK_HOME/tools/bi
 #Run post install deps
 RUN echo "yes" | sdkmanager "platform-tools" "platforms;android-28"
 RUN echo "yes" | sdkmanager "build-tools;28.0.3"
+
+#ENTRYPOINT ["flutter"]
+#CMD ["doctor"]
