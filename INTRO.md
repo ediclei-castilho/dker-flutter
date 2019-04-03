@@ -28,7 +28,7 @@ cons: trial de 15 dias apenas ou $50 por mês
 
 - [ ] trabalhar com dois (travis já está encaminhado)
 - [ ] pesquisar circle-ci -> https://circleci.com  
-- [ ] fastlane -> https://fastlane.tools/  
+- [ ] fastlane -> https://fastlane.tools/ (eu acho que o fastlane entra como alternativo do kobiton - pesquisar melhor)  
 - [ ] pesquisar outros free
 
 ## BONUS - primeira tarefa  
