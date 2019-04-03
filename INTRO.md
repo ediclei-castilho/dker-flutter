@@ -40,7 +40,7 @@ Vamos usar boas práticas para versionar nosso App
 - plus: https://medium.com/data-science-brigade/versionamento-sem%C3%A2ntico-um-passo-al%C3%A9m-do-git-53e466d0f21a  
 ```
 Dado um número de versão MAJOR.MINOR.PATCH, incremente a:  
-1. versão Maior(MAJOR): quando fizer mudanças incompatíveis na API,  
+1. versão Maior(MAJOR): uma realmente nova versão,  
 2. versão Menor(MINOR): quando adicionar funcionalidades mantendo compatibilidade, e  
 3. versão de Correção(PATCH): quando corrigir falhas mantendo compatibilidade.  
 ```
