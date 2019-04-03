@@ -18,7 +18,7 @@ https://flutter.dev/docs/get-started/codelab
     
 ### Kobiton - teste online de Aplicativo  
 pros: muito bom! Dá para deployar a partir do travis-ci.  
-cons: trial de 15 apenas ou $50 por mês  
+cons: trial de 15 dias apenas ou $50 por mês  
 - site: https://kobiton.com/  
 - [ ] pesquisar um alternativo  
     
