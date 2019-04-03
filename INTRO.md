@@ -22,10 +22,14 @@ cons: trial de 15 apenas ou $50 por mês
 - site: https://kobiton.com/  
 - [ ] pesquisar um alternativo  
     
-### CI/CD - travis-ci.org
+### CI/CD - travis-ci.org  
 
 - [ ] trabalhar com dois (travis já está encaminhado)
 - [ ] pesquisar circle-ci -> https://circleci.com
 - [ ] pesquisar outros free
     
     
+### Members (adicionem seus contatos github/outros aqui e abram pull request)
+Ariel  
+Gabriel  
+Marcelo  
