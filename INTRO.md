@@ -37,6 +37,14 @@ Vamos usar boas práticas para versionar nosso App
 - [ ] olhar arquivo odroidfeeder/pubspec.yaml  
 - [ ] olhar arquivo odroidfeeder/android/app/build.gradle  
 - dicas: https://medium.com/@ralphbergmann/versioning-with-flutter-299869e68af4  
+- plus: https://medium.com/data-science-brigade/versionamento-sem%C3%A2ntico-um-passo-al%C3%A9m-do-git-53e466d0f21a  
+```
+Dado um número de versão MAJOR.MINOR.PATCH, incremente a:
+1. versão Maior(MAJOR): quando fizer mudanças incompatíveis na API,
+2. versão Menor(MINOR): quando adicionar funcionalidades mantendo compatibilidade, e
+3. versão de Correção(PATCH): quando corrigir falhas mantendo compatibilidade.
+Rótulos adicionais para pré-lançamento(pre-release) e metadados de construção(build) estão disponíveis como extensão ao formato MAJOR.MINOR.PATCH.
+```
 
 ## BONUS - segunda tarefa  
 
