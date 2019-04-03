@@ -23,6 +23,7 @@ pros: muito bom! Dá para deployar a partir do travis-ci.
 cons: trial de 15 dias apenas ou $50 por mês  
 - site: https://kobiton.com/  
 - [ ] pesquisar um alternativo  
+- [ ] pesquisa 01 - testfairy parace bom!!! - > https://docs.travis-ci.com/user/deployment/testfairy (https://www.testfairy.com/)
     
 ### CI/CD - travis-ci.org  
 
