@@ -55,5 +55,5 @@ Mudar o "applicationId" para algo mais contextualizado com nosso projeto
 ## Members (adicionem seus contatos github/outros aqui e abram pull request)
 Ariel  
 Gabriel  
-Marcelo  
+Marcelo  -  https://github.com/marcelocostabr  
 Rodolfo  
