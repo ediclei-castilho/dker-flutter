@@ -2,7 +2,9 @@
 
 A new Flutter project.
 
-## Começando (Flutter)
+## Começando (Flutter)  
+Por que Flutter? Um framework promissor que saiu da versão beta a pouco tempo e já vem se destacando.  
+Leia mais: https://hackernoon.com/flutter-pros-and-cons-for-seamless-cross-platform-development-c81bde5a4083  
 
 ### Fazer o primeiro tutorial  
 
