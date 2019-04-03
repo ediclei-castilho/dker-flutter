@@ -31,7 +31,7 @@ cons: trial de 15 dias apenas ou $50 por mês
 - [ ] pesquisar outros free
     
     
-### Members (adicionem seus contatos github/outros aqui e abram pull request)
+## Members (adicionem seus contatos github/outros aqui e abram pull request)
 Ariel  
 Gabriel  
 Marcelo  
