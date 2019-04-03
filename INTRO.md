@@ -30,8 +30,21 @@ cons: trial de 15 dias apenas ou $50 por mês
 - [ ] pesquisar circle-ci -> https://circleci.com  
 - [ ] fastlane -> https://fastlane.tools/  
 - [ ] pesquisar outros free
-    
-    
+
+## BONUS - primeira tarefa  
+
+Vamos usar boas práticas para versionar nosso App  
+- [ ] olhar arquivo odroidfeeder/pubspec.yaml  
+- [ ] olhar arquivo odroidfeeder/android/app/build.gradle  
+- dicas: https://medium.com/@ralphbergmann/versioning-with-flutter-299869e68af4  
+
+## BONUS - segunda tarefa  
+
+Mudar o "applicationId" para algo mais contextualizado com nosso projeto   
+- [ ] olhar arquivo odroidfeeder/android/app/build.gradle  
+- [ ] trazer sugestão de nomes  
+- [ ] necessita adicionar o "br".com... ??  
+
 ## Members (adicionem seus contatos github/outros aqui e abram pull request)
 Ariel  
 Gabriel  
