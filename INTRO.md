@@ -61,5 +61,5 @@ Para deixarmos tudo bem bonitinho, vamos pensar em uma autenticação para o usu
 ## Members (adicionem seus contatos github/outros aqui e abram pull request)
 Ariel  
 Gabriel  
-Marcelo  
+Marcelo  -  https://github.com/marcelocostabr  
 Rodolfo  
