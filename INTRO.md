@@ -27,7 +27,8 @@ cons: trial de 15 dias apenas ou $50 por mês
 ### CI/CD - travis-ci.org  
 
 - [ ] trabalhar com dois (travis já está encaminhado)
-- [ ] pesquisar circle-ci -> https://circleci.com
+- [ ] pesquisar circle-ci -> https://circleci.com  
+- [ ] fastlane -> https://fastlane.tools/  
 - [ ] pesquisar outros free
     
     
