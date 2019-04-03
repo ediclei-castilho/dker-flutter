@@ -53,6 +53,11 @@ Mudar o "applicationId" para algo mais contextualizado com nosso projeto
 - [ ] trazer sugestão de nomes  
 - [ ] necessita adicionar o "br".com... ??  
 
+## BONUS - Próximos passos - Autenticação de APP  
+
+Para deixarmos tudo bem bonitinho, vamos pensar em uma autenticação para o usuário entrar no APP  
+    - referência: https://github.com/AndriousSolutions/auth  
+
 ## Members (adicionem seus contatos github/outros aqui e abram pull request)
 Ariel  
 Gabriel  
