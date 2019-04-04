@@ -13,3 +13,6 @@ jobs:
       - run:
           name: "Test"
           command: /bin/bash cloud/docker/build-test.sh $PROJECT_TEST
+      - run:
+          name: "Build"
+          command: /bin/bash cloud/docker/build-test.sh $PROJECT_TEST build
