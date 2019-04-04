@@ -6,6 +6,9 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Test
-          command: PROJECT_TEST=odroidfeeder
-          command: /bin/bash cloud/docker/build-test.sh
+          name: "Qual a branch!?"
+          command: echo ${CIRCLE_BRANCH}
+      - run:
+          name: "Test"
+          command: echo 'export PROJECT_TEST="odroidfeeder"' >> $BASH_ENV
+          command: /bin/bash cloud/docker/build-test.sh $PROJECT_TEST
