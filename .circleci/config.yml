@@ -7,4 +7,5 @@ jobs:
       - checkout
       - run:
           name: Test
+          command: PROJECT_TEST=odroidfeeder
           command: /bin/bash cloud/docker/build-test.sh
