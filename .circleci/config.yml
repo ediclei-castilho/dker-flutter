@@ -3,34 +3,41 @@ jobs:
   build:
     docker:
       - image: rodolfoneto/dker-flutter:latest
-      - image: node
     working_directory: odroidfeeder
     steps:
       - checkout
       - run:
-          name: "Qual a branch!?"
-          command: |
-            echo ${CIRCLE_BRANCH}
-            echo 'export PROJECT_TEST="odroidfeeder"' >> $BASH_ENV
-            echo 'JS_SCRIPT_PATH="_scripts"' >> $BASH_ENV
-            echo 'DELIVERED_APP_PATH="$PROJECT_TEST/build/app/outputs/apk/release/"' >> $BASH_ENV
+        name: "Qual a branch!?"
+        command: |
+          echo ${CIRCLE_BRANCH}
+          echo 'export PROJECT_TEST="odroidfeeder"' >> $BASH_ENV
+          echo 'JS_SCRIPT_PATH="_scripts"' >> $BASH_ENV
+          echo 'DELIVERED_APP_PATH="$PROJECT_TEST/build/app/outputs/apk/release/"' >> $BASH_ENV
       - run:
           name: "Test"
           command: |
-              cd $PROJECT_TEST
-              flutter test
+            cd $PROJECT_TEST
+            flutter test
       - run:
           name: "Build"
           command: |
-              cd $PROJECT_TEST
-              flutter build apk
+            cd $PROJECT_TEST
+            flutter build apk
       - store_artifacts:
           path: build/app/outputs/apk/release/app-release.apk
-      - run:
-          name: "Deploy"
-          command: |
-              cd $PROJECT_TEST
-              flutter build apk
-              npm install request
-              node $JS_SCRIPT_PATH/upload-app.js ${DELIVERED_APP_PATH}app-release.apk app-release.apk
+
+workflows:
+  version: 2  
+    deploy_workflow:
+      jobs:
+        build:
+          docker:
+            - image: node
+          - run:
+              name: "Deploy"
+              command: |
+                cd $PROJECT_TEST
+                flutter build apk
+                npm install request
+                node $JS_SCRIPT_PATH/upload-app.js ${DELIVERED_APP_PATH}app-release.apk app-release.apk
           
