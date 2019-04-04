@@ -26,18 +26,16 @@ jobs:
       - store_artifacts:
           path: build/app/outputs/apk/release/app-release.apk
 
-workflows:
-  version: 2  
-    deploy_workflow:
-      jobs:
-        build:
-          docker:
-            - image: node
-          - run:
-              name: "Deploy"
-              command: |
-                cd $PROJECT_TEST
-                flutter build apk
-                npm install request
-                node $JS_SCRIPT_PATH/upload-app.js ${DELIVERED_APP_PATH}app-release.apk app-release.apk
-          
+  deploy:
+    docker:
+      - image: node
+    steps:
+      - chcekout
+      - run:
+          name: "Deploy"
+          command: |
+            cd $PROJECT_TEST
+            flutter build apk
+            npm install request
+            node $JS_SCRIPT_PATH/upload-app.js ${DELIVERED_APP_PATH}app-release.apk app-release.apk
+
