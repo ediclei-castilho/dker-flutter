@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  test:
     docker:
       - image: rodolfoneto/dker-flutter:latest
     working_directory: odroidfeeder
@@ -13,6 +13,12 @@ jobs:
           echo 'export PROJECT_TEST="odroidfeeder"' >> $BASH_ENV
           echo 'JS_SCRIPT_PATH="_scripts"' >> $BASH_ENV
           echo 'DELIVERED_APP_PATH="$PROJECT_TEST/build/app/outputs/apk/release/"' >> $BASH_ENV
+  build:
+    docker:
+      - image: rodolfoneto/dker-flutter:latest
+    working_directory: odroidfeeder
+    steps:
+      - checkout
       - run:
           name: "Test"
           command: |
@@ -38,4 +44,15 @@ jobs:
             flutter build apk
             npm install request
             node $JS_SCRIPT_PATH/upload-app.js ${DELIVERED_APP_PATH}app-release.apk app-release.apk
+            
+workflows:
+  version: 2
+  
+  flutter_workflow:
+    jobs:
+      - test
+      - build
+      - deploy:
+        requires:
+          - build
 
