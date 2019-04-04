@@ -3,6 +3,7 @@ jobs:
   build:
     docker:
       - image: rodolfoneto/dker-flutter:latest
+    working_directory: odroidfeeder/
     steps:
       - checkout
       - run:
@@ -14,14 +15,19 @@ jobs:
             echo 'DELIVERED_APP_PATH="$PROJECT_TEST/build/app/outputs/apk/release/"' >> $BASH_ENV
       - run:
           name: "Test"
-          command: flutter
-     # - run:
-     #     name: "Build"
-     #    command: /bin/bash cloud/docker/build-test.sh $PROJECT_TEST build
-     # - run:
-     #     name: "Deploy"
-     #     command: |
-     #       /bin/bash cloud/docker/build-test.sh $PROJECT_TEST deploy
-     #       /usr/sbin/npm install request
-     #      node $JS_SCRIPT_PATH/upload-app.js ${DELIVERED_APP_PATH}app-release.apk app-release.apk
+          command: flutter test
+      - run:
+          name: "Build"
+         command: flutter build apk
+         
+version: 2
+jobs:
+  build:
+    docker:
+      - image: node
+      - run:
+          name: "Deploy"
+          command: 
+              npm install request
+              node $JS_SCRIPT_PATH/upload-app.js ${DELIVERED_APP_PATH}app-release.apk app-release.apk
           
