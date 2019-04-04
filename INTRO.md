@@ -1,3 +1,7 @@
+# ATENÇÃO  
+usar o trello:  
+https://trello.com/invite/b/sSdPdpL3/2377ba5f227e53a67805f0ac80f515bc/sprint-1-130419
+
 # FLUTTER BEST TEAM
 
 A new Flutter project.
