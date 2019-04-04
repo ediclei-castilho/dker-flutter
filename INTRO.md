@@ -14,7 +14,7 @@ https://flutter.dev/docs/get-started/codelab
     
 ### Fazer as tarefas de desenvolvimento em um gerenciador de tarefas?  
 
-- [ ] usar o trello? -> https://trello.com/  
+- [x] usar o trello? -> https://trello.com/  
 - [ ] outro?  
 - [ ] nenhum?  
 - [ ] Gitkraken? -> https://www.gitkraken.com/glo  
@@ -28,7 +28,7 @@ cons: trial de 15 dias apenas ou $50 por mês
     
 ### CI/CD - travis-ci.org  
 
-- [ ] trabalhar com dois (travis já está encaminhado)
+- [x] trabalhar com dois (travis já está encaminhado)
 - [ ] pesquisar circle-ci -> https://circleci.com  
 - [ ] fastlane -> https://fastlane.tools/ (eu acho que o fastlane entra como alternativo do kobiton - pesquisar melhor)  
 - [ ] pesquisar outros free
