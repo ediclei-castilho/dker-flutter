@@ -24,9 +24,11 @@ jobs:
           command: |
               cd $PROJECT_TEST
               flutter build apk
+      - store_artifacts:
+          path: $DELIVERED_APP_PATH
       - run:
           name: "Deploy"
-          command: 
+          command: |
               cd $PROJECT_TEST
               flutter build apk
               npm install request
