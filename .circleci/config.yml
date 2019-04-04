@@ -7,12 +7,14 @@ jobs:
     steps:
       - checkout
       - run:
-        name: "Qual a branch!?"
+        name: "Flutter Test"
         command: |
           echo ${CIRCLE_BRANCH}
           echo 'export PROJECT_TEST="odroidfeeder"' >> $BASH_ENV
           echo 'JS_SCRIPT_PATH="_scripts"' >> $BASH_ENV
           echo 'DELIVERED_APP_PATH="$PROJECT_TEST/build/app/outputs/apk/release/"' >> $BASH_ENV
+          cd $PROJECT_TEST
+          flutter test
   build:
     docker:
       - image: rodolfoneto/dker-flutter:latest
@@ -20,10 +22,10 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Test"
+          name: "Build"
           command: |
             cd $PROJECT_TEST
-            flutter test
+            flutter build apk
       - run:
           name: "Build"
           command: |
