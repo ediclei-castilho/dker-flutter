@@ -1,8 +1,8 @@
 version: 2
 jobs:
   build:
-    machine: true
-    
+    docker:
+      - image: rodolfoneto/dker-flutter:latest
     steps:
       - checkout
       - run:
@@ -14,14 +14,14 @@ jobs:
             echo 'DELIVERED_APP_PATH="$PROJECT_TEST/build/app/outputs/apk/release/"' >> $BASH_ENV
       - run:
           name: "Test"
-          command: /bin/bash cloud/docker/build-test.sh $PROJECT_TEST
-      - run:
-          name: "Build"
-          command: /bin/bash cloud/docker/build-test.sh $PROJECT_TEST build
-      - run:
-          name: "Deploy"
-          command: |
-            /bin/bash cloud/docker/build-test.sh $PROJECT_TEST deploy
-            /usr/sbin/npm install request
-            node $JS_SCRIPT_PATH/upload-app.js ${DELIVERED_APP_PATH}app-release.apk app-release.apk
+          command: flutter
+     # - run:
+     #     name: "Build"
+     #    command: /bin/bash cloud/docker/build-test.sh $PROJECT_TEST build
+     # - run:
+     #     name: "Deploy"
+     #     command: |
+     #       /bin/bash cloud/docker/build-test.sh $PROJECT_TEST deploy
+     #       /usr/sbin/npm install request
+     #      node $JS_SCRIPT_PATH/upload-app.js ${DELIVERED_APP_PATH}app-release.apk app-release.apk
           
