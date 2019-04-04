@@ -17,15 +17,18 @@ jobs:
       - run:
           name: "Test"
           command: |
-              ls -lrt
-              cd odroidfeeder
+              cd $PROJECT_TEST
               flutter test
       - run:
           name: "Build"
-          command: flutter build apk
+          command: |
+              cd $PROJECT_TEST
+              flutter build apk
       - run:
           name: "Deploy"
           command: 
+              cd $PROJECT_TEST
+              flutter build apk
               npm install request
               node $JS_SCRIPT_PATH/upload-app.js ${DELIVERED_APP_PATH}app-release.apk app-release.apk
           
