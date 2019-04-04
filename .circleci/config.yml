@@ -19,9 +19,6 @@ jobs:
       - run:
           name: "Build"
           command: flutter build apk
-         
-version: 2
-jobs:
   build:
     docker:
       - image: node
