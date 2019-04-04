@@ -16,7 +16,9 @@ jobs:
             echo 'DELIVERED_APP_PATH="$PROJECT_TEST/build/app/outputs/apk/release/"' >> $BASH_ENV
       - run:
           name: "Test"
-          command: flutter test
+          command: |
+            ls -lrt
+            flutter test
       - run:
           name: "Build"
           command: flutter build apk
