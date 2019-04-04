@@ -1,16 +1,10 @@
 version: 2
 jobs:
   build:
-    docker:
-      - image: debian:stretch
-
+    machine: true
+    
     steps:
       - checkout
-
       - run:
-          name: Greeting
-          command: echo Hello, world.
-
-      - run:
-          name: Print the Current Time
-          command: date
+          name: Test
+          command: /bin/bash cloud/docker/build-test.sh
