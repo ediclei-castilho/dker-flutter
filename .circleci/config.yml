@@ -17,8 +17,8 @@ jobs:
       - run:
           name: "Test"
           command: |
-            ls -lrt
-            flutter test
+              ls -lrt
+              flutter test
       - run:
           name: "Build"
           command: flutter build apk
