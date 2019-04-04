@@ -1,4 +1,4 @@
-travis-ci [![Build Status](https://travis-ci.org/dodopontocom/dker-flutter.svg?branch=develop)](https://travis-ci.org/dodopontocom/dker-flutter)  circle-ci [![CircleCI](https://circleci.com/gh/dodopontocom/dker-flutter/tree/develop.svg?style=svg)](https://circleci.com/gh/dodopontocom/dker-flutter/tree/develop)  
+[![Build Status](https://travis-ci.org/dodopontocom/dker-flutter.svg?branch=develop)](https://travis-ci.org/dodopontocom/dker-flutter)   [![CircleCI](https://circleci.com/gh/dodopontocom/dker-flutter/tree/develop.svg?style=svg)](https://circleci.com/gh/dodopontocom/dker-flutter/tree/develop)  
 # odroidfeeder
 
 A new Flutter project.
