@@ -17,6 +17,7 @@ https://flutter.dev/docs/get-started/codelab
 - [ ] usar o trello? -> https://trello.com/  
 - [ ] outro?  
 - [ ] nenhum?  
+- [ ] Gitkraken? -> https://www.gitkraken.com/glo  
     
 ### Kobiton - teste online de Aplicativo  
 pros: muito bom! Dá para deployar a partir do travis-ci.  
