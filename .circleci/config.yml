@@ -52,14 +52,14 @@ jobs:
             BUILD_NUMBER=$((++BUILD_NUMBER))
             arr=(${BUILD_NAME//./ })
             echo "${arr[@]}"
-            if [[ "${CIRCLE_BRANCH}" != "develop" || "${CIRCLE_BRANCH}" != "master" || "${CIRCLE_BRANCH}" != "release" ]]
-            then
+            #if [[ "${CIRCLE_BRANCH}" != "develop" || "${CIRCLE_BRANCH}" != "master" || "${CIRCLE_BRANCH}" != "release" ]]
+            #then
               ((arr[2]++))
               BUILD_NAME=$(echo "${arr[0]}.${arr[1]}.${arr[2]}")
               echo "flutter build apk --build-name=${BUILD_NAME} --build-number=${BUILD_NUMBER}"
               flutter build apk --build-name=${BUILD_NAME} --build-number=${BUILD_NUMBER}
               cat build/app/generated/source/buildConfig/release/com/example/odroidfeeder/BuildConfig.java
-            fi
+            #fi
       - store_artifacts:
           path: odroidfeeder/build/app/outputs/apk/release/app-release.apk
           destination: apk
