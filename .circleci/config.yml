@@ -33,10 +33,10 @@ jobs:
             cd $PROJECT_TEST
             flutter build apk
       - store_artifacts:
-          path: DELIVERED_APK/app-release.apk
+          path: ${DELIVERED_APK}/app-release.apk
           destination: apk
       - persist_to_workspace:
-          root: DELIVERED_APK
+          root: ${DELIVERED_APK}
           paths:
             - app-release.apk
 
