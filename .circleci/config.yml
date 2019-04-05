@@ -1,9 +1,13 @@
-version: 2
+version: 2.1
 defaults: &defaults
   environment:
     PROJECT_TEST: odroidfeeder
     JS_SCRIPT_PATH: _scripts
-    DELIVERED_APP_PATH: "PROJECT_TEST/build/app/outputs/apk/release/"
+    DELIVERED_APP_PATH: odroidfeeder/build/app/outputs/apk/release
+only-deploy-master: &only-deploy-master
+  filters:
+    branches:
+      only: master
 jobs:
   test:
     <<: *defaults
@@ -16,6 +20,7 @@ jobs:
           name: "Flutter Test"
           command: |
             export
+            echo "$DELIVERED_APP_PATH"
             ls -lrta
             cd $PROJECT_TEST
             flutter test
@@ -33,6 +38,7 @@ jobs:
             flutter build apk
       - store_artifacts:
           path: odroidfeeder/build/app/outputs/apk/release/app-release.apk
+          destination: apk
       - persist_to_workspace:
           root: odroidfeeder/build/app/outputs/apk/release
           paths:
@@ -50,13 +56,9 @@ jobs:
       - run:
           name: "Deploy"
           command: |
-            if [ "${CIRCLE_BRANCH}" == "develop" ]; then
               #incrementar versão corretamente
               npm install request
               node $JS_SCRIPT_PATH/upload-app.js /tmp/workspace/app-release.apk app-release.apk
-            else
-              echo "deploy apenas a partir da branch develop"
-            fi
             
 workflows:
   version: 2
@@ -64,10 +66,8 @@ workflows:
   flutter_workflow:
     jobs:
       - test
-      - build:
-          requires:
-            - test
+      - build
       - deploy:
+          <<: *only-deploy-master
           requires:
             - build
-
