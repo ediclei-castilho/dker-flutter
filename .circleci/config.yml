@@ -73,4 +73,13 @@ workflows:
           <<: *only-deploy-tags
           requires:
             - build
+            
+  flutter_workflow_tagged:
+    jobs:
+      - test: *only-deploy-tags
+      - build: *only-deploy-tags
+      - deploy:
+          <<: *only-deploy-tags
+          requires:
+            - build
 
