@@ -66,9 +66,9 @@ workflows:
       - deploy:
           filters:
               tags:
-              #branches:
                   only: /^v.*/
-                  #only: demo/deploy-tag
+              branches:
+                  ignore: /.*/
           requires:
             - build
 
