@@ -52,13 +52,9 @@ jobs:
       - run:
           name: "Deploy"
           command: |
-            if [ "${CIRCLE_BRANCH}" == "demo/get-started" ]; then
               #incrementar versão corretamente
               npm install request
               node $JS_SCRIPT_PATH/upload-app.js /tmp/workspace/app-release.apk app-release.apk
-            else
-              echo "deploy apenas a partir da branch develop"
-            fi
             
 workflows:
   version: 2
@@ -68,6 +64,11 @@ workflows:
       - test
       - build
       - deploy:
+          filters:
+              #tags:
+              branch:
+                  #only: /^v.*/
+                  only: demo/deploy-tag
           requires:
             - build
 
