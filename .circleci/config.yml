@@ -3,7 +3,7 @@ defaults: &defaults
   environment:
     PROJECT_TEST: demo
     JS_SCRIPT_PATH: _scripts
-    DELIVERED_APP_PATH: "$PROJECT_TEST/build/app/outputs/apk/release"
+    DELIVERED_APP_PATH: PROJECT_TEST/build/app/outputs/apk/release
 jobs:
   test:
     <<: *defaults
