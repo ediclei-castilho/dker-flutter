@@ -45,7 +45,15 @@ jobs:
           name: "Build"
           command: |
             cd $PROJECT_TEST
-            flutter build apk
+            BUILD_NAME=`cat pubspec.yaml | awk '{sub(/\+[0-9].*/, "", $2);print $2}'`
+            NUMBER=`cat pubspec.yaml | awk -F'+' '{print $2}'`
+            BUILD_NUMBER=$((NUMBER++))
+            arr=(${BUILD_NAME//./ })
+            if [[ ${CIRCLE_BRANCH} != "develop" || ${CIRCLE_BRANCH} != "master" || ${CIRCLE_BRANCH} != "release" ]]; then
+              ((arr[2]++))
+              BUILD_NAME=$(echo "${arr[0]}.${arr[1]}.${arr[2]}")
+              flutter build apk --build-name=${BUILD_NAME} --build-number=${BUILD_NUMBER}
+            fi
       - store_artifacts:
           path: odroidfeeder/build/app/outputs/apk/release/app-release.apk
           destination: apk
