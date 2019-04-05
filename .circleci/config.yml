@@ -1,10 +1,12 @@
 version: 2
-environment:
-  PROJECT_TEST: odroidfeeder
-  JS_SCRIPT_PATH: _scripts
-  DELIVERED_APP_PATH: "$PROJECT_TEST/build/app/outputs/apk/release/"
+defaults: &defaults
+  environment:
+    PROJECT_TEST: odroidfeeder
+    JS_SCRIPT_PATH: _scripts
+    DELIVERED_APP_PATH: "$PROJECT_TEST/build/app/outputs/apk/release/"
 jobs:
   test:
+    <<: *defaults
     docker:
       - image: rodolfoneto/dker-flutter:latest
     working_directory: ~/$PROJECT_TEST
@@ -17,6 +19,7 @@ jobs:
             cd $PROJECT_TEST
             flutter test
   build:
+    <<: *defaults
     docker:
       - image: rodolfoneto/dker-flutter:latest
     working_directory: ~/$PROJECT_TEST
@@ -31,6 +34,7 @@ jobs:
           path: odroidfeeder/build/app/outputs/apk/release/app-release.apk
 
   deploy:
+    <<: *defaults
     docker:
       - image: node
     working_directory: ~/$PROJECT_TEST
