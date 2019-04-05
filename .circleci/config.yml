@@ -47,21 +47,16 @@ jobs:
       - checkout
       - attach_workspace:
           at: /tmp/workspace
-      - run: |
-          if [[ `ls /tmp/workspace/app-release.apk` ]]; then
-            echo "It worked!"
-          else
-            echo "Nope!"
-            exit 1
-          fi
-      #- run:
-      #    name: "Deploy"
-      #    command: |
-      #      if [ "${CIRCLE_BRANCH}" == "develop" ]; then
+      - run:
+          name: "Deploy"
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "develop" ]; then
               #incrementar versão corretamente
-      #        npm install request
-      #        node $JS_SCRIPT_PATH/upload-app.js ${DELIVERED_APP_PATH}app-release.apk app-release.apk
-      #      fi
+              npm install request
+              node $JS_SCRIPT_PATH/upload-app.js /tmp/workspace/app-release.apk app-release.apk
+            else
+              echo "deploy apenas a partir da branch develop"
+            fi
             
 workflows:
   version: 2
