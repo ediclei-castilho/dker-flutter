@@ -15,6 +15,7 @@ jobs:
       - run:
           name: "Flutter Test"
           command: |
+            export
             ls -lrta
             cd $PROJECT_TEST
             flutter test
