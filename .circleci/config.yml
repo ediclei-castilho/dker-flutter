@@ -3,13 +3,13 @@ defaults: &defaults
   environment:
     PROJECT_TEST: odroidfeeder
     JS_SCRIPT_PATH: _scripts
-    DELIVERED_APP_PATH: "$PROJECT_TEST/build/app/outputs/apk/release/"
+    DELIVERED_APP_PATH: "PROJECT_TEST/build/app/outputs/apk/release/"
 jobs:
   test:
     <<: *defaults
     docker:
       - image: rodolfoneto/dker-flutter:latest
-    working_directory: ~/$PROJECT_TEST
+    working_directory: ~/PROJECT_TEST
     steps:
       - checkout
       - run:
@@ -23,7 +23,7 @@ jobs:
     <<: *defaults
     docker:
       - image: rodolfoneto/dker-flutter:latest
-    working_directory: ~/$PROJECT_TEST
+    working_directory: ~/PROJECT_TEST
     steps:
       - checkout
       - run:
@@ -38,7 +38,7 @@ jobs:
     <<: *defaults
     docker:
       - image: node
-    working_directory: ~/$PROJECT_TEST
+    working_directory: ~/PROJECT_TEST
     steps:
       - chcekout
       - run:
