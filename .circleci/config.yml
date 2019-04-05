@@ -16,7 +16,7 @@ jobs:
           name: "Flutter Test"
           command: |
             export
-            echo "$DELIVERED_APP_PATH"
+            echo "${DELIVERED_APP_PATH}"
             ls -lrta
             cd $PROJECT_TEST
             flutter test
