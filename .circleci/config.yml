@@ -1,4 +1,9 @@
 version: 2
+environment:
+  PROJECT_NAME: DB Job
+  PROJECT_TEST: odroidfeeder
+  JS_SCRIPT_PATH: _scripts
+  DELIVERED_APP_PATH: "$PROJECT_TEST/build/app/outputs/apk/release/"
 jobs:
   test:
     docker:
