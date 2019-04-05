@@ -4,12 +4,10 @@ defaults: &defaults
     PROJECT_TEST: demo
     JS_SCRIPT_PATH: _scripts
     DELIVERED_APP_PATH: demo/build/app/outputs/apk/release
-only-deploy-tags: &only-deploy-tags
+only-deploy-master: &only-deploy-master
   filters:
-    tags:
-      only: /^v.*/
     branches:
-      ignore: /.*/
+      only: master
 jobs:
   test:
     <<: *defaults
@@ -70,16 +68,6 @@ workflows:
       - test
       - build
       - deploy:
-          <<: *only-deploy-tags
+          <<: *only-deploy-master
           requires:
             - build
-            
-  flutter_workflow_tagged:
-    jobs:
-      - test: *only-deploy-tags
-      - build: *only-deploy-tags
-      - deploy:
-          <<: *only-deploy-tags
-          requires:
-            - build
-
