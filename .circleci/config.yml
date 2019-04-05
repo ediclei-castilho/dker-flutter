@@ -4,10 +4,20 @@ defaults: &defaults
     PROJECT_TEST: odroidfeeder
     JS_SCRIPT_PATH: _scripts
     DELIVERED_APP_PATH: odroidfeeder/build/app/outputs/apk/release
-only-deploy-master: &only-deploy-master
+only-releasable: &only-releasable
   filters:
     branches:
-      only: master
+      only:
+        - master
+        - develop
+        - release
+only-non-release: &only-non-release
+  filters:
+    branches:
+      ignore:
+        - master
+        - develop
+        - release
 jobs:
   test:
     <<: *defaults
@@ -70,6 +80,6 @@ workflows:
           requires:
             - test
       - deploy:
-          <<: *only-deploy-master
+          <<: *only-releasable
           requires:
             - build
