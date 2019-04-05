@@ -68,6 +68,6 @@ Ariel
 Claudio             
 Ediclei  
 Gabriel    
-Marcelo  -  https://github.com/marcelocostabr  
-Rodolfo    
-Wagner   -  https://github.com/wagnerbola2
+Marcelo  -  https://github.com/marcelocostabr    
+Rodolfo  - https://github.com/dodopontocom  
+Wagner   -  https://github.com/wagnerbola2  
