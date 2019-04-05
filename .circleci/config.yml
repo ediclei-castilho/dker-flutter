@@ -65,10 +65,10 @@ workflows:
       - build
       - deploy:
           filters:
-              #tags:
-              branches:
-                  #only: /^v.*/
-                  only: demo/deploy-tag
+              tags:
+              #branches:
+                  only: /^v.*/
+                  #only: demo/deploy-tag
           requires:
             - build
 
