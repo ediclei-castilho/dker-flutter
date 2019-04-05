@@ -4,6 +4,12 @@ defaults: &defaults
     PROJECT_TEST: demo
     JS_SCRIPT_PATH: _scripts
     DELIVERED_APP_PATH: demo/build/app/outputs/apk/release
+only-deploy-tags: &only-deploy-tags
+  filters:
+    tags:
+      only: /^v.*/
+    branches:
+      ignore: /.*/
 jobs:
   test:
     <<: *defaults
@@ -64,11 +70,7 @@ workflows:
       - test
       - build
       - deploy:
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              ignore: /.*/
+          <<: *only-deploy-tags
           requires:
             - build
 
