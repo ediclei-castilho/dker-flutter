@@ -64,7 +64,7 @@ workflows:
   flutter_workflow:
     jobs:
       - test
-      - build:
+      - build
       - deploy:
           requires:
             - build
