@@ -33,6 +33,10 @@ jobs:
             flutter build apk
       - store_artifacts:
           path: odroidfeeder/build/app/outputs/apk/release/app-release.apk
+      - persist_to_workspace:
+          root: odroidfeeder/build/app/outputs/apk/release
+          paths:
+            - app-release.apk
 
   deploy:
     <<: *defaults
@@ -41,14 +45,23 @@ jobs:
     working_directory: ~/PROJECT_TEST
     steps:
       - checkout
-      - run:
-          name: "Deploy"
-          command: |
-            if [ "${CIRCLE_BRANCH}" == "develop" ]; then
+      - attach_workspace:
+        at: /tmp/workspace
+      - run: |
+          if [[ `ls /tmp/workspace/app-release.apk` ]]; then
+            echo "It worked!"
+          else
+            echo "Nope!"
+            exit 1
+          fi
+      #- run:
+      #    name: "Deploy"
+      #    command: |
+      #      if [ "${CIRCLE_BRANCH}" == "develop" ]; then
               #incrementar versão corretamente
-              npm install request
-              node $JS_SCRIPT_PATH/upload-app.js ${DELIVERED_APP_PATH}app-release.apk app-release.apk
-            fi
+      #        npm install request
+      #        node $JS_SCRIPT_PATH/upload-app.js ${DELIVERED_APP_PATH}app-release.apk app-release.apk
+      #      fi
             
 workflows:
   version: 2
