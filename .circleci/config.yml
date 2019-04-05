@@ -45,10 +45,10 @@ jobs:
     docker:
       - image: node
     working_directory: ~/PROJECT_TEST
+    filters:
+      tags:
+        only: /^v.*/
     steps:
-      filters:
-        tags:
-          only: /^v.*/
       - checkout
       - attach_workspace:
           at: /tmp/workspace
