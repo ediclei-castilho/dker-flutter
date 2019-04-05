@@ -45,6 +45,9 @@ jobs:
     docker:
       - image: node
     working_directory: ~/PROJECT_TEST
+    filters:
+      tags:
+        only: /^v.*/
     steps:
       - checkout
       - attach_workspace:
@@ -64,9 +67,9 @@ workflows:
       - test
       - build
       - deploy:
-          filters:
-              tags:
-                  only: /^v.*/
+          #filters:
+              #tags:
+                  #only: /^v.*/
               #branches:
                   #ignore: /.*/
           requires:
