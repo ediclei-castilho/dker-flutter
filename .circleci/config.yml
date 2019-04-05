@@ -40,7 +40,7 @@ jobs:
       - image: node
     working_directory: ~/PROJECT_TEST
     steps:
-      - chcekout
+      - checkout
       - run:
           name: "Deploy"
           command: |
