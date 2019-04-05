@@ -46,7 +46,7 @@ jobs:
     steps:
       - checkout
       - attach_workspace:
-        at: /tmp/workspace
+          at: /tmp/workspace
       - run: |
           if [[ `ls /tmp/workspace/app-release.apk` ]]; then
             echo "It worked!"
