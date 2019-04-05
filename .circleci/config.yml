@@ -50,7 +50,8 @@ jobs:
             cat pubspec.yaml | grep ^version | awk -F'+' '{print $2}'
             BUILD_NUMBER=$(cat pubspec.yaml | grep ^version | awk -F'+' '{print $2}')
             BUILD_NUMBER=$((++BUILD_NUMBER))
-            arr=( ${BUILD_NAME//./ } )
+            arr=(${BUILD_NAME//./ })
+            echo "${arr[@]}"
             if [[ ${CIRCLE_BRANCH} != "develop" || ${CIRCLE_BRANCH} != "master" || ${CIRCLE_BRANCH} != "release" ]]
             then
               ((arr[2]++))
