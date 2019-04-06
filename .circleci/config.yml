@@ -167,7 +167,7 @@ workflows:
           <<: *non-releasable
           requires:
             - test
-      - preprare-deploy:
+      - prepare-deploy:
           <<: *only-releasable
           requires:
             - test
