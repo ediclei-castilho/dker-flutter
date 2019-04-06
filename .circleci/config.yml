@@ -71,7 +71,7 @@ jobs:
               chmod +x ../_scripts/git_setup.sh
               bash ../_scripts/git_setup.sh rodolfotiago@gmail.com rodolfotiago
               git add .
-              git commit -m "new tag"
+              git commit -m "[skip ci] new tag"
               git tag v${new_tag}
               git push origin --tags
               git push origin $CIRCLE_BRANCH
