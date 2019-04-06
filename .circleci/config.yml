@@ -110,7 +110,7 @@ jobs:
                 commit_message="${git_tag}"
               fi
               git add .
-              git commit -m "[skip ci] new tag on pubspec.yaml - ${new_tag}+${CIRCLE_BUILD_NUM}"
+              git commit -m "[skip ci] new tag on pubspec.yaml - version ${new_tag}+${CIRCLE_BUILD_NUM}"
               git tag v${commit_message}
               git push origin --tags
               git push origin $CIRCLE_BRANCH
