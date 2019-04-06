@@ -1,4 +1,4 @@
-version: 2.1
+version: 2
 defaults: &defaults
   environment:
     PROJECT_TEST: odroidfeeder
@@ -12,6 +12,10 @@ only-releasable: &only-releasable
         - develop
         - minor
 jobs:
+  steps:
+    - add_ssh_keys:
+      fingerprints:
+        - "15:57:cd:30:2c:b6:f3:16:7b:db:9b:fc:12:95:4a:1e"
   test:
     <<: *defaults
     docker:
@@ -33,8 +37,6 @@ jobs:
       - image: rodolfoneto/dker-flutter:latest
     working_directory: ~/PROJECT_TEST
     steps:
-      - add_ssh_keys:
-          fingerprints: "15:57:cd:30:2c:b6:f3:16:7b:db:9b:fc:12:95:4a:1e"
       - checkout
       - run:
           name: "Build"
