@@ -38,15 +38,42 @@ jobs:
           name: "Build"
           command: |
             cd $PROJECT_TEST
-            git tag --list | tail -1 | sed 's/^v//'
-            git_tag=$(git tag --list | tail -1 | sed 's/^v//')
-            cat pubspec.yaml | grep ^version | awk '{sub(/\+[0-9].*/, "", $2);print $2}'
-            this_version=$(cat pubspec.yaml | grep ^version | awk '{sub(/\+[0-9].*/, "", $2);print $2}')
-            if [[ "$git_tag" == "$this_version" ]];
-            then
-              echo "read to deploy"
-            fi
             flutter build apk
+            
+            git_tag=$(git tag --list | tail -1 | sed 's/^v//')
+            arr=( ${git_tag//./ } )
+            new_tag=""
+            
+            if [[ "${CIRCLE_BRANCH}" == "minor" ]];
+            then
+              ((++arr[2]))
+              new_tag=$(echo "${arr[0]}.${arr[1]}.${arr[2]}")
+            fi
+            if [[ "${CIRCLE_BRANCH}" == "develop" ]];
+            then
+              ((++arr[1]))
+              arr[2]=0
+              new_tag=$(echo "${arr[0]}.${arr[1]}.${arr[2]}")
+            fi
+            if [[ "${CIRCLE_BRANCH}" == "master" ]];
+            then
+              ((++arr[0]))
+              arr[1]=0
+              arr[2]=0
+              new_tag=$(echo "${arr[0]}.${arr[1]}.${arr[2]}")
+            fi
+            if [[ ! -z $new_tag ]];
+            then
+              sed "s/^version:\ [0-9].*\.[0-9].*\.[0-9].*+[0-9].*/version:\ ${new_tag}+${CIRCLE_BUILD}/" pubspec.yaml -i
+              git config user.name $CIRCLE_USERNAME
+              git add .
+              git commit -m "new tag"
+              git tag v${new_tag}
+              git push origin --tags
+            else
+              echo "Essa build não vai gerar tag nova"
+            fi
+            
       - store_artifacts:
           path: odroidfeeder/build/app/outputs/apk/release/app-release.apk
           destination: apk
