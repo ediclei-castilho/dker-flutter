@@ -43,7 +43,7 @@ jobs:
             cd $PROJECT_TEST
             flutter build apk
    
-            git_tag=$(git tag --list | tail -1 | sed 's/^v//')
+            git_tag=$(git tag --sort=committerdate | tail -1 | sed 's/^v//')
             arr=( ${git_tag//./ } )
             new_tag=""
             
