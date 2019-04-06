@@ -44,8 +44,9 @@ jobs:
           command: |
             cd $PROJECT_TEST
             flutter build apk
-   
-            git_tag=$(git tag --sort=committerdate | tail -1 | sed 's/^v//' | cut -d'-' -f1)
+
+            git_tag=$(cat pubspec.yaml | grep ^version | awk '{sub(/\+[0-9].*/, "", $2);print $2}')
+            #git_tag=$(git tag --sort=committerdate | tail -1 | sed 's/^v//' | cut -d'-' -f1)
             arr=( ${git_tag//./ } )
             new_tag=""
             
@@ -70,15 +71,15 @@ jobs:
               bash ../_scripts/git_setup.sh $GITHUB_EMAIL $GITHUB_USER_NAME
               if [[ "${arr[1]}" == "0" && "${arr[0]}" == "0" ]];
               then
-                commit_message="${new_tag}-build-${CIRCLE_BUILD_NUM}-alpha"
+                commit_message="${git_tag}-build-${CIRCLE_BUILD_NUM}-alpha"
               elif [[ "${arr[1]}" != "0" && "${arr[0]}" == "0" ]];
               then
-                commit_message="${new_tag}-build-${CIRCLE_BUILD_NUM}-beta"
+                commit_message="${git_tag}-build-${CIRCLE_BUILD_NUM}-beta"
               else
-                commit_message="${new_tag}"
+                commit_message="${git_tag}"
               fi
               git add .
-              git commit -m "[skip ci] new tag - ${commit_message}"
+              git commit -m "[skip ci] new tag on pubspec.yaml - ${new_tag}+${CIRCLE_BUILD_NUM}"
               git tag v${commit_message}
               git push origin --tags
               git push origin $CIRCLE_BRANCH
