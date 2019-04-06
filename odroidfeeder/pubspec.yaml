@@ -1,7 +1,7 @@
 name: odroidfeeder
 description: A new Flutter project.
 
-version: 0.0.7+240
+version: 0.0.8+243
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
