@@ -24,7 +24,7 @@ jobs:
           command: |
             export
             echo "$DELIVERED_APP_PATH"
-            ls -lrta
+            ls -lrta _scripts
             cd $PROJECT_TEST
             flutter test
   build:
@@ -68,6 +68,7 @@ jobs:
             if [[ ! -z $new_tag ]];
             then
               sed "s/^version:\ [0-9].*\.[0-9].*\.[0-9].*+[0-9].*/version:\ ${new_tag}+${CIRCLE_BUILD}/" pubspec.yaml -i
+              chmod +x ./_scripts/git_setup.sh
               bash ./_scripts/git_setup.sh rodolfotiago@gmail.com rodolfotiago
               git add .
               git commit -m "new tag"
