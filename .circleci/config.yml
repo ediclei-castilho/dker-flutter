@@ -10,14 +10,7 @@ only-releasable: &only-releasable
       only:
         - master
         - develop
-        - release
-only-non-release: &only-non-release
-  filters:
-    branches:
-      ignore:
-        - master
-        - develop
-        - release
+        - minor
 jobs:
   test:
     <<: *defaults
@@ -45,21 +38,15 @@ jobs:
           name: "Build"
           command: |
             cd $PROJECT_TEST
+            git tag --list | tail -1 | sed 's/^v//'
+            git_tag=$(git tag --list | tail -1 | sed 's/^v//')
             cat pubspec.yaml | grep ^version | awk '{sub(/\+[0-9].*/, "", $2);print $2}'
-            BUILD_NAME=$(cat pubspec.yaml | grep ^version | awk '{sub(/\+[0-9].*/, "", $2);print $2}')
-            cat pubspec.yaml | grep ^version | awk -F'+' '{print $2}'
-            BUILD_NUMBER=$(cat pubspec.yaml | grep ^version | awk -F'+' '{print $2}')
-            BUILD_NUMBER=$((++BUILD_NUMBER))
-            arr=(${BUILD_NAME//./ })
-            echo "${arr[@]}"
-            #if [[ "${CIRCLE_BRANCH}" != "develop" || "${CIRCLE_BRANCH}" != "master" || "${CIRCLE_BRANCH}" != "release" ]]
-            #then
-            ((arr[2]++))
-            BUILD_NAME=$(echo "${arr[0]}.${arr[1]}.${arr[2]}")
-            echo "flutter build apk --build-name=${BUILD_NAME} --build-number=${BUILD_NUMBER}"
-            flutter build apk --build-name=${BUILD_NAME} --build-number=${BUILD_NUMBER}
-            cat build/app/generated/source/buildConfig/release/com/example/odroidfeeder/BuildConfig.java
-            #fi
+            this_version=$(cat pubspec.yaml | grep ^version | awk '{sub(/\+[0-9].*/, "", $2);print $2}')
+            if [[ "$git_tag" == "$this_version" ]];
+            then
+              echo "read to deploy"
+            fi
+            flutter build apk
       - store_artifacts:
           path: odroidfeeder/build/app/outputs/apk/release/app-release.apk
           destination: apk
