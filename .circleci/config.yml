@@ -12,7 +12,7 @@ only-releasable: &only-releasable
       only:
         - master
         - develop
-        - minor
+        - patch
 jobs:
   test:
     <<: *defaults
@@ -45,12 +45,13 @@ jobs:
             cd $PROJECT_TEST
             flutter build apk
 
+            git pull
             git_tag=$(cat pubspec.yaml | grep ^version | awk '{sub(/\+[0-9].*/, "", $2);print $2}')
             #git_tag=$(git tag --sort=committerdate | tail -1 | sed 's/^v//' | cut -d'-' -f1)
             arr=( ${git_tag//./ } )
             new_tag=""
             
-            if [[ "${CIRCLE_BRANCH}" == "minor" ]];
+            if [[ "${CIRCLE_BRANCH}" == "patch" ]];
             then
               ((++arr[2]))
               new_tag=$(echo "${arr[0]}.${arr[1]}.${arr[2]}")
