@@ -68,7 +68,7 @@ jobs:
             if [[ ! -z $new_tag ]];
             then
               sed "s/^version:\ [0-9].*\.[0-9].*\.[0-9].*+[0-9].*/version:\ ${new_tag}+${CIRCLE_BUILD}/" pubspec.yaml -i
-              git config user.name $CIRCLE_USERNAME
+              bash ./_scripts/git_setup.sh rodolfotiago@gmail.com rodolfotiago
               git add .
               git commit -m "new tag"
               git tag v${new_tag}
