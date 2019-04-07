@@ -33,7 +33,6 @@ jobs:
           name: "Flutter Test"
           command: |
             export
-            ls -lrta _scripts
             cd $PROJECT_TEST
             flutter test
 
