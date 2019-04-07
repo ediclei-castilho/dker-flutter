@@ -48,7 +48,7 @@ jobs:
           name: "Build to Dev"
           command: |
             cd $PROJECT_TEST
-            flutter build apk --build-name=0.0.0-test --build-number=x
+            flutter build apk --build-name=0.0.0-build-${CIRCLE_BUILD_NUM} --build-number=${CIRCLE_BUILD_NUM}
 
       - store_artifacts:
           path: odroidfeeder/build/app/outputs/apk/release/app-release.apk
