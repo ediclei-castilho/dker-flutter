@@ -1,7 +1,7 @@
 name: odroidfeeder
 description: Pet Feeder Project.
 
-version: 0.0.4+364
+version: 0.0.5+375
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
