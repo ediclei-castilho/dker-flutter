@@ -6,6 +6,8 @@ defaults: &defaults
     DELIVERED_APP_PATH: odroidfeeder/build/app/outputs/apk/release
     GITHUB_EMAIL: rodolfotiago@gmail.com
     GITHUB_USER_NAME: rodolfotiago
+    DEV_KOBITON_USER: place_holder
+    DEV_KOBITON_API: place_holder
 only-releasable: &only-releasable
   filters:
     branches:
