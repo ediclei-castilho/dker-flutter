@@ -66,7 +66,7 @@ Para deixarmos tudo bem bonitinho, vamos pensar em uma autenticação para o usu
 ## Members (adicionem seus contatos github/outros aqui e abram pull request)
 Ariel  
 Claudio             
-Ediclei  - 	https://github.com/ediclei-castilho
+Ediclei  - 	https://github.com/ediclei-castilho<br>
 Gabriel    
 Marcelo  -  https://github.com/marcelocostabr    
 Rodolfo  - 	https://github.com/dodopontocom  
