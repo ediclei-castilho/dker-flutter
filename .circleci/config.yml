@@ -32,6 +32,7 @@ jobs:
       - run:
           name: "Flutter Test"
           command: |
+            echo "export"
             export
             cd $PROJECT_TEST
             flutter test
