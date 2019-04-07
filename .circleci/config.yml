@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 defaults: &defaults
   environment:
     PROJECT_TEST: odroidfeeder
@@ -12,7 +12,15 @@ only-releasable: &only-releasable
       only:
         - master
         - develop
-        - minor
+        - patch
+non-releasable: &non-releasable
+  filters:
+    branches:
+      ignore:
+        - master
+        - develop
+        - patch
+
 jobs:
   test:
     <<: *defaults
@@ -29,7 +37,29 @@ jobs:
             ls -lrta _scripts
             cd $PROJECT_TEST
             flutter test
-  build:
+
+  build-dev:
+    <<: *defaults
+    docker:
+      - image: rodolfoneto/dker-flutter:latest
+    working_directory: ~/PROJECT_TEST
+    steps:
+      - checkout
+      - run:
+          name: "Build to Dev"
+          command: |
+            cd $PROJECT_TEST
+            flutter build apk --build-name=0.0.0-test --build-number=x
+
+      - store_artifacts:
+          path: odroidfeeder/build/app/outputs/apk/release/app-release.apk
+          destination: apk-dev
+      - persist_to_workspace:
+          root: odroidfeeder/build/app/outputs/apk/release
+          paths:
+            - app-release.apk
+
+  prepare-deploy:
     <<: *defaults
     docker:
       - image: rodolfoneto/dker-flutter:latest
@@ -40,17 +70,18 @@ jobs:
             - "15:57:cd:30:2c:b6:f3:16:7b:db:9b:fc:12:95:4a:1e"
       - checkout
       - run:
-          name: "Build"
+          name: "Prepare to Deploy to UAT"
           command: |
             cd $PROJECT_TEST
             flutter build apk
 
+            git branch
             git_tag=$(cat pubspec.yaml | grep ^version | awk '{sub(/\+[0-9].*/, "", $2);print $2}')
             #git_tag=$(git tag --sort=committerdate | tail -1 | sed 's/^v//' | cut -d'-' -f1)
             arr=( ${git_tag//./ } )
             new_tag=""
             
-            if [[ "${CIRCLE_BRANCH}" == "minor" ]];
+            if [[ "${CIRCLE_BRANCH}" == "patch" ]];
             then
               ((++arr[2]))
               new_tag=$(echo "${arr[0]}.${arr[1]}.${arr[2]}")
@@ -79,7 +110,7 @@ jobs:
                 commit_message="${git_tag}"
               fi
               git add .
-              git commit -m "[skip ci] new tag on pubspec.yaml - ${new_tag}+${CIRCLE_BUILD_NUM}"
+              git commit -m "[skip ci] new tag on pubspec.yaml - version ${new_tag}+${CIRCLE_BUILD_NUM}"
               git tag v${commit_message}
               git push origin --tags
               git push origin $CIRCLE_BRANCH
@@ -95,7 +126,23 @@ jobs:
           paths:
             - app-release.apk
 
-  deploy:
+  deploy-dev:
+    <<: *defaults
+    docker:
+      - image: node
+    working_directory: ~/PROJECT_TEST
+    steps:
+      - checkout
+      - attach_workspace:
+          at: /tmp/workspace-dev
+      - run:
+          name: "Deploy to Dev"
+          command: |
+              #incrementar versão corretamente
+              npm install request
+              node $JS_SCRIPT_PATH/upload-app.js /tmp/workspace-dev/app-release.apk app-release.apk
+
+  deploy-uat:
     <<: *defaults
     docker:
       - image: node
@@ -105,23 +152,30 @@ jobs:
       - attach_workspace:
           at: /tmp/workspace
       - run:
-          name: "Deploy"
+          name: "Deploy to UAT"
           command: |
-              #incrementar versão corretamente
               npm install request
               node $JS_SCRIPT_PATH/upload-app.js /tmp/workspace/app-release.apk app-release.apk
             
 workflows:
-  version: 2
+  version: 2.1
   
   flutter_workflow:
     jobs:
       - test
-      - build:
+      - build-dev:
+          <<: *non-releasable
+          requires:
+            - test
+      - prepare-deploy:
           <<: *only-releasable
           requires:
             - test
-      - deploy:
+      - deploy-dev:
+          <<: *non-releasable
+          requires:
+            - build-dev
+      - deploy-uat:
           <<: *only-releasable
           requires:
-            - build
+            - prepare-deploy
